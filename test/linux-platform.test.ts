@@ -55,6 +55,27 @@ QUnit.module('linux platform tests', hooks => {
       ]
     });
   });
+  QUnit.test('linuxFlavorDetails - Mariner', assert => {
+    const details = linuxFlavorDetails(LinuxFlavor.Mariner);
+    assert.deepEqual(details, {
+      caFolders: [
+        '/etc/pki/ca-trust/source/anchors',
+        '/usr/share/pki/ca-trust-source'
+      ],
+      postCaPlacementCommands: [
+        {
+          command: 'sudo',
+          args: ['update-ca-trust']
+        }
+      ],
+      postCaRemovalCommands: [
+        {
+          command: 'sudo',
+          args: ['update-ca-trust']
+        }
+      ]
+    });
+  });
   QUnit.test('linuxFlavorDetails - Ubuntu', assert => {
     const details = linuxFlavorDetails(LinuxFlavor.Ubuntu);
     assert.deepEqual(details, {

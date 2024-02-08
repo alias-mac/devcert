@@ -36,7 +36,8 @@ export enum LinuxFlavor {
   Unknown = 0,
   Ubuntu,
   Rhel7,
-  Fedora
+  Fedora,
+  Mariner
 }
 
 async function determineLinuxFlavor(
@@ -51,6 +52,8 @@ async function determineLinuxFlavor(
       return { flav: LinuxFlavor.Ubuntu };
     case 'Fedora':
       return { flav: LinuxFlavor.Fedora };
+    case 'Mariner':
+      return { flav: LinuxFlavor.Mariner };
     default:
       return {
         flav: LinuxFlavor.Unknown,
@@ -98,6 +101,7 @@ export function linuxFlavorDetails(
   switch (flavor) {
     case LinuxFlavor.Rhel7:
     case LinuxFlavor.Fedora:
+    case LinuxFlavor.Mariner:
       return {
         caFolders: customCaRoots || [
           '/etc/pki/ca-trust/source/anchors',
